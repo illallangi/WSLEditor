@@ -1,5 +1,7 @@
-import click
 import subprocess
+
+import click
+
 
 @click.command()
 @click.argument('filename', type=click.Path(file_okay=True, dir_okay=False, writable=True, readable=True, resolve_path=True, allow_dash=False), required=True)
@@ -9,6 +11,7 @@ import subprocess
 def main(filename, distribution, editor, editor_args):
     windowsFilename = f"\\\\wsl$\\{distribution}{filename}".replace('/', '\\')
     subprocess.call([editor, *editor_args.split(' '), windowsFilename])
-    
+
+
 if __name__ == "__main__":
-  main()
+    main()
